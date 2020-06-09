@@ -18,6 +18,7 @@ using Num = System.Numerics;
 using Dalamud.Interface;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
+using System.Numerics;
 
 //TODO
 //https://github.com/Haplo064/ffxiv-chat-extender/projects/2
@@ -129,73 +130,41 @@ namespace DalamudPlugin
         public Num.Vector4 timeColour = new Num.Vector4(255, 255, 255, 255);
         public Num.Vector4 nameColour = new Num.Vector4(255, 255, 255, 255);
 
-        public Num.Vector4[] logColour =
-        {
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255)
-        };
 
-        public Num.Vector4[] chanColour =
-        {
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255)
-        };
 
-        public Num.Vector4[] bubbleColour =
+        public static T Clone<T>(T original)
         {
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),
-                new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f),new Num.Vector4(0.866f,0.819f,0.761f,1f)
-        };
+            T newObject = (T)Activator.CreateInstance(original.GetType());
 
-        public bool[] bubbleEnable =
+            foreach (var originalProp in original.GetType().GetProperties())
+            {
+                originalProp.SetValue(newObject, originalProp.GetValue(original));
+            }
+
+            return newObject;
+        }
+        public static T[] GenerateArray<T>(int size, T defaultValue)
         {
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true, true,
-            true, true, true, true
-        };
+            T[] ret = new T[size];
+            for(int i = 0; i < size; i++)
+            {
+                ret[i] = Clone<T>(defaultValue);
+            }
+            return ret;
+        }
+
+
+        public Num.Vector4[] logColour = GenerateArray<Num.Vector4>(64, new Num.Vector4(255, 255, 255, 255));
+    
+
+        public Num.Vector4[] chanColour = GenerateArray<Num.Vector4>(64, new Num.Vector4(255, 255, 255, 255));
+      
+
+        public Num.Vector4[] bubbleColour = GenerateArray<Num.Vector4>(64, new Num.Vector4(0.866f, 0.819f, 0.761f, 1f));
+
+
+        public bool[] bubbleEnable = GenerateArray<bool>(64, true);
+     
 
         public String[] Channels =
         {
@@ -644,22 +613,7 @@ namespace DalamudPlugin
 
                     items = templist;
 
-                    Num.Vector4[] logColour_temp =
-                    {
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255)
-                };
+                    Num.Vector4[] logColour_temp = GenerateArray<Num.Vector4>(64, new Num.Vector4(255, 255, 255, 255));
 
                     int j = 0;
                     foreach (Num.Vector4 vec in logColour)
@@ -669,22 +623,7 @@ namespace DalamudPlugin
                     }
                     logColour = logColour_temp;
 
-                    Num.Vector4[] chanColour_temp =
-                    {
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),
-                new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255),new Num.Vector4(255,255,255,255)
-                };
+                    Num.Vector4[] chanColour_temp =GenerateArray<Num.Vector4>(64, new Num.Vector4(255, 255, 255, 255));
 
                     int k = 0;
                     foreach (Num.Vector4 vec in chanColour)
@@ -717,22 +656,8 @@ namespace DalamudPlugin
                         temp.Scroll = items.Scroll;
                         temp.Title = items.Title;
                         temp.Logs = items.Logs.ToArray();
-                        temp.Chans =
-                            new bool[] {
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true, true,
-                                true, true, true, true
-                            };
+                        temp.Chans = temp.Chans = GenerateArray<bool>(64, true);
+
                         templist.Add(temp);
                         l++;
                     }

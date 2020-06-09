@@ -63,37 +63,9 @@ namespace DalamudPlugin
             public ConcurrentQueue<ChatText> Chat;
             public bool Enabled;
 
-            public bool[] Logs = {
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false
-            };
+            public bool[] Logs = ChatExtenderPlugin.GenerateArray<bool>(64, false);
 
-            public bool[] Chans = {
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true, true,
-                true, true, true, true
-            };
+            public bool[] Chans = ChatExtenderPlugin.GenerateArray<bool>(64, true);
 
             // 0 = Timestamp
             // 1 = Channel
